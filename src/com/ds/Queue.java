@@ -1,53 +1,49 @@
 package com.ds;
 
+/**
+ * @author jayeshkumar Implemented queue using linkedlist
+ */
 public class Queue {
+	LinkedList queue = new LinkedList();
 	Node head;
 	
-	class Node{
-		int data;
-		Node next;
-		
-		Node(int data){
-			this.data=data;
-			next=null;
-		}
-	}
-	
+
+
+	/**
+	 * @param data value of new node adds the newnode at the end. Calls the add
+	 *             method defined in LinkedList class
+	 */
 	public void enueue(int data) {
-		Node newNode= new Node(data);
-		if(head==null) {
-			head=newNode;
-		}
-		else {
-			Node temp=head;
-			while(temp.next!=null) {
-				temp=temp.next;
-			}
-			temp.next=newNode;
-		}
+
+		head = queue.add(data);
 		
-			}
-	
+
+	}
+
+	/**
+	 * prints the content of queue
+	 */
 	public void display() {
-		if(head==null) {
+		if (head == null) {
 			System.out.println("empty");
-		}
-		else {
-			Node temp=head;
-			while(temp.next!=null) {
-				System.out.print(temp.data+"--->");
-				temp=temp.next;
+		} else {
+			Node temp = head;
+			while (temp.next != null) {
+				System.out.print(temp.data + "--->");
+				temp = temp.next;
 			}
 			System.out.println(temp.data);
 		}
 	}
-	
+
+	/**
+	 * Removes the first element from queue
+	 */
 	public void dequeue() {
-		if(head==null) {
+		if (head == null) {
 			System.out.println("empty");
-		}
-		else {
-			head=head.next;
+		} else {
+			head = head.next;
 		}
 	}
 

@@ -1,24 +1,29 @@
 package com.ds;
 
+
+
+
+/**
+ * @author jayeshkumar
+ *Linked list is collection of nodes
+ *Implemented features of linked list like adding,removing
+ */
 public class LinkedList {
 	
 	public Node head;
 	
-	private class Node{
-		int data;
-		Node next;
-		
-		Node(int data){
-			this.data=data;
-			next=null;
-		}
-	}
 	
-	public  void add(final int data) {
+	/**
+	 * @param data the value node will store
+	 * @return head of the linked list
+	 * Add the new node at end
+	 */
+	public  Node add(final int data) {
 		
 		Node newNode = new Node(data);
 		if(head==null) {
 			head=newNode;
+			return head;
 			
 		}
 		else {
@@ -28,13 +33,28 @@ public class LinkedList {
 			}
 			temp.next=newNode;
 		}
+		return head;
 	}
-	public void push(int data) {
+	
+	
+	/**
+	 * @param data 
+	 * @return head of the list
+	 * Adds new node at begining
+	 */
+	public Node push(int data) {
 		Node newNode = new Node(data);
 		newNode.next=head;
 		head=newNode;
+		return head;
 		
 	}
+	
+	
+	/**
+	 * @param data value of node
+	 * @param dest index where the node needs to be added
+	 */
 	public void inBetween(int data,int dest)
 	{
 	
@@ -58,19 +78,28 @@ public class LinkedList {
 		
 	}
 	
+	/**
+	 *  Deletes the first node from linkedList
+	 */
 	public void deleteFirst()  {//USECASE5
 		if(head==null) {
 			System.out.println("Underflow");
 			return;
 		}
 		Node temp=head;
-		if(head.next==null) {
+		head=temp.next;
+		/*if(head.next==null) {
 			head=null;
 		}
 		else {
 			head=temp.next;
-		}
+		}*/
 	}
+	
+	
+	/**
+	 *  Deleted the last node from LinkedList
+	 */
 	public void deleteLast()  {//USECASE6
 		if(head==null) {
 			System.out.println("Underflow");
@@ -90,25 +119,40 @@ public class LinkedList {
 		}
 	}
 	
-	public void search(int data) {//USECASE7
+	/**
+	 * @param data values to be searched
+	 * Travers the linkedlist to search for particular node.
+	 */
+	public boolean search(int data) {//USECASE7
 		Node temp=head;
 		int count=0;
 		if(head==null) {
 			System.out.println("Underflow");
-			return;
+			return false;
 		}
+		boolean flag=false;
 		while(temp!=null) {
 			if(temp.data==data) {
 				System.out.println("Found at "+(count+1));
-				return;
+				flag=true;
+				break;
 			}
 			else {
 				temp=temp.next;
 				count++;
 			}
 		}
+		if(temp==null) {
+			System.out.println("Not found");
+			return false;
+		}
+		
+		return flag;
 	}
 	
+	/**
+	 *  Prints the content of linkedlist
+	 */
 	public void print() {
 		Node temp= head;
 		if(temp==null) {
@@ -122,6 +166,12 @@ public class LinkedList {
 		System.out.println(temp.data);
 	}
 	
+	/**
+	 * @param key value of existing node
+	 * @param data value of new node
+	 * 
+	 * Add newnode after the exiting node with value=key
+	 */
 	public void addAfter(int key, int data) {//USECASE8
 		
 		Node newNode= new Node(data);
@@ -153,14 +203,23 @@ public class LinkedList {
 		
 	}
 	
-	public void deleteNode(int data) {
+	/**
+	 * @param data value of node to be deleted
+	 * 
+	 * Deletes a particular node with value=data
+	 */
+	public void deleteNode(int data) { 
 
-		if(head==null) {
-			System.out.println("underflow");
+		if(!search(data)) {
 			return;
+			
 		}
-		if(head.next==null) {
+		/*if(head.next==null && head.data==data) {
 			head=null;
+			return;
+		}*/
+		if(head.next!=null && head.data==data) {
+			head=head.next;
 			return;
 		}
 		else {
