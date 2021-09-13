@@ -5,15 +5,42 @@ package com.ds;
  */
 public class Stack {
 	Node head;
+	int size;
+	int top;
 	LinkedList stack = new LinkedList();
+	
+	Stack(int size){
+		this.size=size;
+		top=-1;
+	}
+	
+	public boolean isFull(){
+		//System.out.println("top= "+top+"Size= "+size);
+		if(top==size-1) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean isEmpty(){
+		if(top==-1) {
+			return true;
+		}
+		return false;
+	}
 
 	/**
 	 * @param data value of node Adds new node at the begining.This will call the
 	 *             push method defined in LinkedList class
 	 */
 	public void push(int data) {
+		if(isFull()) {
+			System.out.println("Overflow");
+			return;
+		}
 
 		head = stack.push(data);
+		top++;
 
 	}
 
@@ -22,10 +49,14 @@ public class Stack {
 	 *         the content
 	 */
 	public int peek() {
-		if (head == null) {
+		if(isEmpty()) {
+			System.out.println("Underflow");
+			return -1;
+		}
+		/*if (head == null) {
 			System.out.println("Stack is empty:Underflow");
 			return 0;
-		}
+		}*/
 		return (int) head.data;
 
 	}
@@ -50,11 +81,17 @@ public class Stack {
 	 * Removes the top element of the stack
 	 */
 	public void pop() {
-		if (head == null) {
-			System.out.println("empty stack");
+		if(isEmpty()) {
+			System.out.println("Underflow");
 			return;
 		}
+		
+		/*if (head == null) {
+			System.out.println("empty stack");
+			return;
+		}*/
 		head = head.next;
+		top--;
 	}
 
 }

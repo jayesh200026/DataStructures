@@ -87,13 +87,15 @@ public class LinkedList {
 			return;
 		}
 		Node temp=head;
-		if(head.next==null) {
+		head=temp.next;
+		/*if(head.next==null) {
 			head=null;
 		}
 		else {
 			head=temp.next;
-		}
+		}*/
 	}
+	
 	
 	/**
 	 *  Deleted the last node from LinkedList
@@ -121,23 +123,31 @@ public class LinkedList {
 	 * @param data values to be searched
 	 * Travers the linkedlist to search for particular node.
 	 */
-	public void search(int data) {//USECASE7
+	public boolean search(int data) {//USECASE7
 		Node temp=head;
 		int count=0;
 		if(head==null) {
 			System.out.println("Underflow");
-			return;
+			return false;
 		}
+		boolean flag=false;
 		while(temp!=null) {
 			if(temp.data==data) {
 				System.out.println("Found at "+(count+1));
-				return;
+				flag=true;
+				break;
 			}
 			else {
 				temp=temp.next;
 				count++;
 			}
 		}
+		if(temp==null) {
+			System.out.println("Not found");
+			return false;
+		}
+		
+		return flag;
 	}
 	
 	/**
@@ -198,14 +208,18 @@ public class LinkedList {
 	 * 
 	 * Deletes a particular node with value=data
 	 */
-	public void deleteNode(int data) {
+	public void deleteNode(int data) { 
 
-		if(head==null) {
-			System.out.println("underflow");
+		if(!search(data)) {
 			return;
+			
 		}
-		if(head.next==null) {
+		/*if(head.next==null && head.data==data) {
 			head=null;
+			return;
+		}*/
+		if(head.next!=null && head.data==data) {
+			head=head.next;
 			return;
 		}
 		else {
