@@ -11,7 +11,7 @@ public class LinkedListMain {
 		linkedlist.addAfter(30,40);
 		linkedlist.deleteNode(30);
 		//linkedlist.deleteLast();
-		//linkedlist.inBetween(20, 4);
+		linkedlist.inBetween(20, 3);
 		linkedlist.print();
 		
 		OrderedLinkedList orderedList = new OrderedLinkedList();
