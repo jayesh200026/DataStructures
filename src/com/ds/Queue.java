@@ -6,8 +6,6 @@ package com.ds;
 public class Queue {
 	LinkedList queue = new LinkedList();
 	Node head;
-	
-
 
 	/**
 	 * @param data value of new node adds the newnode at the end. Calls the add
@@ -16,7 +14,6 @@ public class Queue {
 	public void enueue(int data) {
 
 		head = queue.add(data);
-		
 
 	}
 
